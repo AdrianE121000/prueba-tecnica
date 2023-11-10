@@ -4,7 +4,7 @@ const CAT_ENDPOINT_RANDOM_FACT = 'https://catfact.ninja/fact';
 
 function App() {
   const [fact, setFact] = useState();
-  const [url, setUrl] = useState();
+  const [threeFristWords, setThreeFristWords] = useState();
 
   useEffect(() => {
     fetch(CAT_ENDPOINT_RANDOM_FACT)
@@ -12,7 +12,7 @@ function App() {
       .then((data) => {
         const { fact } = data;
         setFact(fact);
-        setUrl(fact.split(' ', 3).join(' '));
+        setThreeFristWords(fact.split(' ', 3).join(' '));
       });
   }, []);
 
@@ -21,7 +21,9 @@ function App() {
       <main>
         <h1>Prueba Tecnica</h1>
         {fact && <p>{fact}</p>}
-        {url && <img src={`https://cataas.com/cat/says/${url}`} />}
+        {threeFristWords && (
+          <img src={`https://cataas.com/cat/says/${threeFristWords}`} />
+        )}
       </main>
     </>
   );
